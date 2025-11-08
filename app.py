@@ -15,7 +15,7 @@ import torch.nn as nn
 #from ensemble_predict import predict_ensemble, class_names
 import sys
 
-st.write("Python Version:", sys.version)
+#st.write("Python Version:", sys.version)
 
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
