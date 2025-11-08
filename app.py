@@ -15,6 +15,8 @@ import torch.nn as nn
 #from ensemble_predict import predict_ensemble, class_names
 import sys
 
+st.write("Python Version:", sys.version)
+
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
 @st.cache_resource
@@ -30,6 +32,7 @@ def load_model():
 model = load_model()
 
 st.markdown("<h1 style='color:#198754;'> CassavAI-PPDVision</h1>", unsafe_allow_html=True)
+st.subheader("Blending AI with Visual Diagnosis for Cassava PPD")
 st.subheader("Upload a cassava tuber image to predict the Postharvest Physiological Deterioration (PPD) score.")
 
 uploaded_file = st.file_uploader("📤 Choose a cassava tuber image...", type=["jpg", "jpeg", "png"])
