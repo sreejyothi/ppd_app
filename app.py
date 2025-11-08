@@ -44,7 +44,7 @@ for class_name in class_names:
     if os.path.isdir(class_path):
         st.sidebar.markdown(f"**{class_name.upper()}**")
         image_files = [f for f in os.listdir(class_path) if f.lower().endswith(('jpg', 'jpeg', 'png'))]
-        for img_file in image_files[:2]:
+        for img_file in image_files[:1]:
             img_path = os.path.join(class_path, img_file)
             st.sidebar.image(img_path, use_container_width=False, width=160)
     else:
