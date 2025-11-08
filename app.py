@@ -12,7 +12,7 @@ from ultralytics.nn.tasks import ClassificationModel
 #from model_mobilenetv3 import MobileNetV3LargeWithDropout
 from torchvision import models
 import torch.nn as nn
-from ensemble_predict import predict_ensemble, class_names
+#from ensemble_predict import predict_ensemble, class_names
 import sys
 
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
