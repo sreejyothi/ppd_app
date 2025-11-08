@@ -22,7 +22,7 @@ def load_model():
 
 model = load_model()
 
-st.markdown("<h1 style='color:#198754;'>🧪 CassavAI-PPDVision</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color:#198754;'> CassavAI-PPDVision</h1>", unsafe_allow_html=True)
 st.subheader("Upload a cassava tuber image to predict the Postharvest Physiological Deterioration (PPD) score.")
 
 uploaded_file = st.file_uploader("📤 Choose a cassava tuber image...", type=["jpg", "jpeg", "png"])
