@@ -7,9 +7,9 @@ import torch
 from torch.nn import Sequential
 from torchvision import transforms
 from ultralytics.nn.tasks import ClassificationModel
-from model_resnet50 import ResNet50WithDropout
-from model_efficientnet import EfficientNetV2SWithDropout
-from model_mobilenetv3 import MobileNetV3LargeWithDropout
+#from model_resnet50 import ResNet50WithDropout
+#from model_efficientnet import EfficientNetV2SWithDropout
+#from model_mobilenetv3 import MobileNetV3LargeWithDropout
 from torchvision import models
 import torch.nn as nn
 from ensemble_predict import predict_ensemble, class_names
