@@ -120,7 +120,7 @@ st.subheader("Blending AI with Visual Diagnosis for Cassava PPD")
 st.markdown("Upload a cassava tuber image to predict the Postharvest Physiological Deterioration (PPD) score.")
 
 # Model selection
-model_choice = st.radio("**Select Model**", list(models.keys()) + ["Ensemble"], horizontal=True)
+# model_choice = st.radio("**Select Model**", list(models.keys()) + ["Ensemble"], horizontal=True)
 
 
 
