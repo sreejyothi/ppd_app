@@ -41,7 +41,68 @@ def download_if_needed(file_id, output_path):
             gdown.download(url, output_path, quiet=False, fuzzy=True)
         except Exception as e:
             raise RuntimeError(f"Download failed for {output_path}: {e}")
+
+
 ####################################
+
+# Load models
+@st.cache_resource
+def load_models():
+    models_dict = {}
+
+    try:
+        from ultralytics import YOLO  # 🔁 Moved import inside function
+        models_dict['YOLOv8'] = YOLO("cassava_ppd_yolov8.pt")
+    except Exception as e:
+        st.warning(f"⚠️ YOLOv8 load failed: {e}")
+
+    try:
+        resnet_path = "resnetfinal_state_dict.pth"
+        download_if_needed("11Kwodly2XNUcOt7HdlBbD77sTsC4_I9o", resnet_path)
+        resnet_model = ResNet50WithDropout(num_classes=len(class_names))
+        resnet_model.load_state_dict(torch.load(resnet_path, map_location="cpu"))
+        resnet_model.eval()
+        models_dict['ResNet50'] = resnet_model
+    except Exception as e:
+        st.warning(f"⚠️ ResNet50 load failed: {e}")
+
+    try:
+        eff_path = "efficientnet_state_dict.pth"
+        download_if_needed("10wlsWr-St47LCUQ7wGqH5BecrGPJHJwL", eff_path)
+        eff_model = EfficientNetV2SWithDropout(num_classes=len(class_names))
+        eff_model.load_state_dict(torch.load(eff_path, map_location="cpu"))
+        eff_model.eval()
+        models_dict['EfficientNetV2S'] = eff_model
+    except Exception as e:
+        st.warning(f"⚠️ EfficientNetV2S load failed: {e}")
+
+    try:
+        mobilenet_path = "mobilenetv3_state_dict.pth"
+        download_if_needed("1R-UDjDkASZ277O4Ds7qyis4sTkmoLdwL", mobilenet_path)
+        mobilenet_model = get_mobilenet_v3(num_classes=len(class_names))
+        mobilenet_model.load_state_dict(torch.load(mobilenet_path, map_location="cpu"))
+        mobilenet_model.eval()
+        models_dict["MobileNetV3-Large"] = mobilenet_model
+    except Exception as e:
+        st.warning(f"⚠️ MobileNetV3-Large load failed: {e}")
+
+    return models_dict
+
+# Load models
+models = load_models()
+
+
+
+
+
+
+
+
+
+
+
+
+
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
 @st.cache_resource
