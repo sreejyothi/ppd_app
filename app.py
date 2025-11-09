@@ -93,6 +93,12 @@ def load_models():
 # models = load_models()
 
 
+#################################
+
+
+
+
+
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
 @st.cache_resource
@@ -107,9 +113,16 @@ def load_model():
 
 model = load_model()
 
+
+# App UI
 st.markdown("<h1 style='color:#198754;'> CassavAI-PPDVision</h1>", unsafe_allow_html=True)
 st.subheader("Blending AI with Visual Diagnosis for Cassava PPD")
-st.subheader("Upload a cassava tuber image to predict the Postharvest Physiological Deterioration (PPD) score.")
+st.markdown("Upload a cassava tuber image to predict the Postharvest Physiological Deterioration (PPD) score.")
+
+# Model selection
+model_choice = st.radio("**Select Model**", list(models.keys()) + ["Ensemble"], horizontal=True)
+
+
 
 uploaded_file = st.file_uploader("📤 Choose a cassava tuber image...", type=["jpg", "jpeg", "png"])
 
