@@ -45,7 +45,7 @@ def download_if_needed(file_id, output_path):
 
 ####################################
 
-'''
+"""
 # Load models
 @st.cache_resource
 def load_models():
@@ -92,7 +92,7 @@ def load_models():
 # Load models
 models = load_models()
 
-'''
+"""
 
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
