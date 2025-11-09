@@ -17,6 +17,14 @@ import sys
 
 #st.write("Python Version:", sys.version)
 
+# MobileNetV3 structure
+def get_mobilenet_v3(num_classes=5):
+    model = models.mobilenet_v3_large(weights=None)
+    num_ftrs = model.classifier[3].in_features
+    model.classifier[3] = nn.Linear(num_ftrs, num_classes)
+    return model
+
+
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
 @st.cache_resource
