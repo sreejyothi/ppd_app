@@ -15,6 +15,8 @@ import torch.nn as nn
 #from ensemble_predict import predict_ensemble, class_names
 import sys
 
+#######################################################
+
 st.write("Python Version:", sys.version)
 
 # MobileNetV3 structure
@@ -24,7 +26,22 @@ def get_mobilenet_v3(num_classes=5):
     model.classifier[3] = nn.Linear(num_ftrs, num_classes)
     return model
 
+# Preprocessing
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
 
+# File download helper
+def download_if_needed(file_id, output_path):
+    if not os.path.exists(output_path):
+        try:
+            url = f"https://drive.google.com/uc?id={file_id}"
+            gdown.download(url, output_path, quiet=False, fuzzy=True)
+        except Exception as e:
+            raise RuntimeError(f"Download failed for {output_path}: {e}")
+####################################
 class_names = ['high', 'low', 'md', 'medium', 'zero']  # update if needed
 
 @st.cache_resource
