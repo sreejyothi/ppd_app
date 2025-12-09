@@ -89,8 +89,8 @@ def load_models():
 
     return models_dict
 
-# Load models
-# models = load_models()
+ Load models
+ models = load_models()
 
 
 #################################
